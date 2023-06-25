@@ -1,7 +1,14 @@
+##########################################################
+# LIBRARIES
+##########################################################
 
 import threading
 import random
 import time
+
+##########################################################
+# PHILOSOPHER CLASS
+##########################################################
 
 # inheriting threading class in Thread module
 class Philosopher(threading.Thread):
@@ -44,6 +51,10 @@ class Philosopher(threading.Thread):
         print ('Philosopher %s starts eating. '% self.index)
         time.sleep(30)
         print ('Philosopher %s finishes eating and leaves to think.' % self.index)
+        
+##########################################################
+# MAIN FUNCTION
+##########################################################
 
 def main():
     # initialising array of forks
@@ -58,6 +69,10 @@ def main():
     time.sleep(50)
     Philosopher.running = False
     print ("Now we're finishing.")
- 
+
+##########################################################
+# USE MAIN FUNCTION
+##########################################################
+
 if __name__ == "__main__":
     main()
