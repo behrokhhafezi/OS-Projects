@@ -3,12 +3,15 @@
 ##########################################################
 
 import requests
+import time
 import pandas as pd
 from bs4 import BeautifulSoup
 
 ##########################################################
 # MAIN
 ##########################################################
+
+Start_Time = time.time()
 
 # saving the site url
 url = 'https://emalls.ir/%D9%84%DB%8C%D8%B3%D8%AA-%D9%82%DB%8C%D9%85%D8%AA_%D9%84%D9%BE-%D8%AA%D8%A7%D9%BE~Category~40'
@@ -50,3 +53,7 @@ Min_Price = min(Price_List)
 Min_Indx = Price_List.index(Min_Price)
 Min_Item_Name = Name_List[Min_Indx]
 print( "* The cheapest laptop is '", Min_Item_Name , "' with a price of ' ", Min_Price , " '.")
+
+End_Time = time.time()
+Total_Time = End_Time - Start_Time
+print("total spending time: " , Total_Time)
