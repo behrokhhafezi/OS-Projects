@@ -4,6 +4,7 @@
 
 import threading
 import pandas
+import time
 
 ##########################################################
 # GLOBAL VARIABLES
@@ -32,7 +33,8 @@ def find_min():
 ##########################################################
 
 def main():
-    # make two thread to execute max and min functions
+    Start_Time = time.time()
+
     max_thread = threading.Thread(target= find_max)
     min_thread = threading.Thread(target= find_min)
 
@@ -41,7 +43,12 @@ def main():
 
     max_thread.join()
     min_thread.join()
-    
+
+    End_Time = time.time()
+    # Calculate the total execution time of the program
+    Total_Time = End_Time - Start_Time
+    print("Total spend time: " , Total_Time)
+
 ##########################################################
 # USE MAIN FUNCTION
 ##########################################################
