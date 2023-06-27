@@ -17,29 +17,30 @@ class Philosopher(threading.Thread):
 
     def __init__(self, index, forkOnLeft, forkOnRight):
         threading.Thread.__init__(self)
-        self.index = index
-        self.forkOnLeft = forkOnLeft
+        self.index       = index
+        self.forkOnLeft  = forkOnLeft
         self.forkOnRight = forkOnRight
 
     def run(self):
         while(self.running):
             # Philosopher is thinking
-            time.sleep(30)
+            time.sleep(random.random())
             print ('Philosopher %s is hungry.' % self.index)
             self.dine()
 
     def dine(self):
         # if both forks are free then philosopher can eat
-        fork1, fork2 = self.forkOnLeft, self.forkOnRight
+        fork1 , fork2 = self.forkOnLeft , self.forkOnRight
         while self.running:
             # wait for left fork
             fork1.acquire() 
             locked = fork2.acquire(False)
             # if right fork is not available leave left fork 
-            if locked: break 
+            if (locked):
+                break 
             fork1.release()
             print ('Philosopher %s swaps forks.' % self.index)
-            fork1, fork2 = fork2, fork1
+            fork1 , fork2 = fork2 , fork1
         else:
             return
         self.dining()
@@ -49,9 +50,9 @@ class Philosopher(threading.Thread):
  
     def dining(self):			
         print ('Philosopher %s starts eating. '% self.index)
-        time.sleep(30)
+        time.sleep(random.random())
         print ('Philosopher %s finishes eating and leaves to think.' % self.index)
-        
+
 ##########################################################
 # MAIN FUNCTION
 ##########################################################
@@ -65,8 +66,12 @@ def main():
             for i in range(5)]
 
     Philosopher.running = True
-    for p in philosophers: p.start()
-    time.sleep(50)
+    for p in philosophers:
+        p.start()
+
+    for p in philosophers:
+        p.join()
+    
     Philosopher.running = False
     print ("Now we're finishing.")
 
