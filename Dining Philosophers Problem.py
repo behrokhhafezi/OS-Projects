@@ -31,7 +31,7 @@ class Philosopher(threading.Thread):
     def dine(self):
         # if both forks are free then philosopher can eat
         fork1 , fork2 = self.forkOnLeft , self.forkOnRight
-        while self.running:
+        while (self.running):
             # wait for left fork
             fork1.acquire() 
             locked = fork2.acquire(False)
@@ -65,15 +65,12 @@ def main():
     philosophers= [Philosopher(i, forks[i%5], forks[(i+1)%5])
             for i in range(5)]
 
-    Philosopher.running = True
+    
     for p in philosophers:
         p.start()
 
     for p in philosophers:
         p.join()
-    
-    Philosopher.running = False
-    print ("Now we're finishing.")
 
 ##########################################################
 # USE MAIN FUNCTION
