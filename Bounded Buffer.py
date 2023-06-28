@@ -27,7 +27,6 @@ def producer() :
     # produce next item
     while(True) :
         global In_C , Out_C
-        print("P in")
         while( ((In_C + 1) % Buffer_Size) == Out_C) :
             print("*** Producer: Buffer is Full. Please wait...")
             time.sleep(random.random())
@@ -44,7 +43,6 @@ def consumer() :
     # next item consume
     while(True) :
         global In_C , Out_C
-        print("C in")
         while(In_C == Out_C) :
             print("+++ Consumer: Buffer is Empty. Please wait...")
             time.sleep(random.random())
